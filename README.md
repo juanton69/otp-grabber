@@ -25,6 +25,8 @@ Nothing is sent to a network service. Codes live in memory for two minutes.
 ## Install
 
 ```bash
+git clone https://github.com/juanton69/otp-grabber.git
+cd otp-grabber
 chmod +x install.sh uninstall.sh otp-grabber otp-grabber-native
 ./install.sh
 ```
@@ -37,10 +39,11 @@ Then load the extension in Wavebox:
 2. **Load unpacked**
 3. Choose `~/.local/share/otp-grabber/extension`
 
-Reinstall Google Messages so SMS codes are forwarded:
+Reinstall [Google Messages for KDE](https://github.com/juanton69/messages-kde) so SMS codes are forwarded:
 
 ```bash
-cd ~/messages-kde
+git clone https://github.com/juanton69/messages-kde.git
+cd messages-kde
 ./install.sh
 ```
 
