@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font: 13px/1.4 system-ui, sans-serif;
+        margin: 12px;
+        width: 260px;
+        color: #e8eaed;
+        background: #202124;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 4px 0;
+      }
+      .muted {
+        color: #9aa0a6;
+      }
+      button {
+        margin-top: 10px;
+        width: 100%;
+        padding: 6px 8px;
+        border: 0;
+        border-radius: 6px;
+        background: #3b5bdb;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>OTP Grabber</h1>
+    <div class="row"><span class="muted">Daemon</span><span id="daemon">…</span></div>
+    <div class="row"><span class="muted">Melia</span><span id="melia">…</span></div>
+    <div class="row"><span class="muted">Fresh codes</span><span id="fresh">…</span></div>
+    <div class="row"><span class="muted">Native host</span><span id="native">…</span></div>
+    <button id="retry">Check again</button>
+    <script src="popup.js"></script>
+  </body>
+</html>
