@@ -10,11 +10,11 @@ import sys
 import threading
 
 from otp_grabber import APP_NAME, TTL_SECONDS, __version__
+from otp_grabber.betterbird import BetterbirdWatcher
 from otp_grabber.clipboard import copy_text
 from otp_grabber.extract import Extracted, domains_from_email, extract_otp, issuer_from_email, issuer_from_sms
-from otp_grabber.melia import MeliaWatcher, watch_mtime
 from otp_grabber.notify import notify_code
-from otp_grabber.paths import melia_db, socket_path
+from otp_grabber.paths import socket_path
 from otp_grabber.store import CodeItem, CodeStore
 
 log = logging.getLogger(APP_NAME)
@@ -31,7 +31,7 @@ def _setup_logging() -> None:
 class Grabber:
     def __init__(self) -> None:
         self.store = CodeStore(ttl=TTL_SECONDS)
-        self.melia = MeliaWatcher()
+        self.mail = BetterbirdWatcher()
         self._stop = threading.Event()
         self._mtime = 0.0
 
@@ -90,7 +90,7 @@ class Grabber:
             result = {"ok": True, "version": __version__}
         elif op == "status":
             result = self.store.status()
-            result["melia"] = self.melia.available()
+            result["betterbird"] = self.mail.available()
             result["version"] = __version__
         elif op == "peek":
             item = self.store.peek(host_s)
@@ -106,17 +106,16 @@ class Grabber:
             result["id"] = req_id
         return result
 
-    def poll_melia(self) -> None:
-        path = melia_db()
-        mtime = watch_mtime(path)
+    def poll_mail(self) -> None:
+        mtime = self.mail.stamp()
         if mtime and mtime <= self._mtime:
             return
         self._mtime = mtime
         try:
-            for _msg_id, extracted, _from in self.melia.poll():
+            for _msg_id, extracted, _from in self.mail.poll():
                 self.ingest_extracted(extracted, "email")
         except Exception:
-            log.exception("melia poll failed")
+            log.exception("betterbird poll failed")
 
     def serve(self) -> int:
         path = socket_path()
@@ -131,8 +130,8 @@ class Grabber:
         os.chmod(path, 0o600)
         server.listen(16)
         server.setblocking(False)
-        log.info("listening on %s (melia=%s)", path, self.melia.available())
-        self.poll_melia()
+        log.info("listening on %s (betterbird=%s)", path, self.mail.available())
+        self.poll_mail()
 
         def handle_client(conn: socket.socket) -> None:
             try:
@@ -172,7 +171,7 @@ class Grabber:
                         conn = None
                     if conn is not None:
                         threading.Thread(target=handle_client, args=(conn,), daemon=True).start()
-                self.poll_melia()
+                self.poll_mail()
         finally:
             server.close()
             try:

@@ -1,5 +1,5 @@
 [Unit]
-Description=OTP grabber (Melia email and Google Messages codes)
+Description=OTP grabber (Betterbird email and Google Messages codes)
 After=graphical-session.target
 
 [Service]

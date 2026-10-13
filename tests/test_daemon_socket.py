@@ -17,7 +17,9 @@ class DaemonSocketTests(unittest.TestCase):
         self.addCleanup(tmp.cleanup)
         sock = Path(tmp.name) / "otp-grabber.sock"
         os.environ["OTP_GRABBER_SOCKET"] = str(sock)
+        os.environ["OTP_GRABBER_BETTERBIRD_PROFILE"] = ""
         self.addCleanup(lambda: os.environ.pop("OTP_GRABBER_SOCKET", None))
+        self.addCleanup(lambda: os.environ.pop("OTP_GRABBER_BETTERBIRD_PROFILE", None))
         daemon_mod.copy_text = lambda _text: True
         daemon_mod.notify_code = lambda *_args, **_kw: None
 

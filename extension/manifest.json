@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "OTP Grabber",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Fills email and SMS sign-in codes collected locally by otp-grabber.",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2q9A8M4ktN5pb4c+hXEoAMT5pmjo6o8DmVVLWtzz4kfVV/dYKTP9OGp78mH85E9h+hSuejvdSfYucb10a30uVKPryi3shykUQAr7BDt4D7l6M0yFOI7iNNV/uppY4pBWAhWAry9SPI3Jt+m8wRvCg4FO8aCjJ9vYIJy+ewiuvTNQo8DkPAsKzdR3SC/ONp029GtV3C3ypDCBLrtOEmu51DvWTAXWsw2DeOx0BMhBNKvfvdlMU+y77A5NGI148TdSQcuDclebT4hAHlBG/2war4iNrK2YnlziCDds9alWmLm0WJTs3yL294sLao+WS7eesyFSzzjljwR7Jvp2f4MygwIDAQAB",
   "icons": {

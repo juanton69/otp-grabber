@@ -6,7 +6,7 @@ function refresh() {
   chrome.runtime.sendMessage({ op: "status" }, (reply) => {
     if (chrome.runtime.lastError || !reply) {
       set("daemon", "unreachable");
-      set("melia", "—");
+      set("betterbird", "—");
       set("fresh", "—");
       set("native", chrome.runtime.lastError ? chrome.runtime.lastError.message : "failed");
       return;
@@ -14,13 +14,13 @@ function refresh() {
     if (reply.error === "no-native-host" || reply.error === "daemon-unavailable") {
       set("native", reply.error);
       set("daemon", "down");
-      set("melia", "—");
+      set("betterbird", "—");
       set("fresh", "—");
       return;
     }
     set("native", "ok");
     set("daemon", reply.ok ? "running" : "down");
-    set("melia", reply.melia ? "watching" : "no database");
+    set("betterbird", reply.betterbird ? "watching" : "no profile");
     set("fresh", String(reply.fresh ?? 0));
   });
 }
