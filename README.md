@@ -1,7 +1,7 @@
 # OTP Grabber
 
 A local sign-in code helper for this desktop. It watches **Betterbird** for
-verification emails and **Google Messages** (`messages-kde`) for SMS codes,
+verification emails and **Google Messages** (`messages-gnome`) for SMS codes,
 copies the code to the clipboard, shows a notification, and can fill the
 website field in **Wavebox** with no paste.
 
@@ -18,7 +18,7 @@ Nothing is sent to a network service. Codes live in memory for two minutes.
 
 - Python 3
 - Betterbird with mail stored locally (Flatpak `eu.betterbird.Betterbird` or a native profile)
-- `messages-kde` 1.0.1+ for SMS
+- [Google Messages for GNOME](https://github.com/juanton69/messages-gnome) for SMS
 - Wavebox (or Chrome) for the companion extension
 - `wl-copy` and `notify-send`
 
@@ -39,15 +39,16 @@ Then load the extension in Wavebox:
 2. **Load unpacked**
 3. Choose `~/.local/share/otp-grabber/extension`
 
-Reinstall [Google Messages for KDE](https://github.com/juanton69/messages-kde) so SMS codes are forwarded:
+Install [Google Messages for GNOME](https://github.com/juanton69/messages-gnome) so SMS codes are forwarded:
 
 ```bash
-git clone https://github.com/juanton69/messages-kde.git
-cd messages-kde
+git clone https://github.com/juanton69/messages-gnome.git
+cd messages-gnome
 ./install.sh
 ```
 
-Restart the Google Messages app after that.
+Then log out and back in so GNOME Shell loads the extension. Incoming Messages
+notifications are forwarded to `$XDG_RUNTIME_DIR/otp-grabber.sock`.
 
 ## Use
 

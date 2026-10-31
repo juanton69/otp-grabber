@@ -81,5 +81,5 @@ echo "  1. Open Wavebox and go to wavebox://extensions  (or chrome://extensions)
 echo "  2. Enable Developer mode"
 echo "  3. Load unpacked → ${APP_DIR}/extension"
 echo
-echo "Google Messages forwarding needs the updated messages-kde app."
-echo "From ~/messages-kde run: ./install.sh   then restart Google Messages."
+echo "Google Messages forwarding needs the GNOME helper from messages-gnome."
+echo "From ~/messages-gnome run: ./install.sh   then log out and back in."
